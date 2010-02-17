@@ -3,11 +3,11 @@ Given /^I have added the author "([^\"]*)"$/ do |name_and_email|
 end
 
 Given /^my global Git configuration is setup with user "([^\"]*)"$/ do |name|
-  `git config --global user.name "#{name}"`
+  git_config "--global user.name \"#{name}\""
 end
 
 Given /^my global Git configuration is setup with email "([^\"]*)"$/ do |email|
-  `git config --global user.email "#{email}"`
+  git_config "--global user.email \"#{email}\""
 end
 
 When /^I add the author "([^\"]*)"$/ do |name_and_email|

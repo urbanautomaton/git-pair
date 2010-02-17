@@ -92,7 +92,7 @@ module GitPair
     def email(*initials_list)
       if initials_list.size > 1
         initials_string = initials_list.map { |initials| "+#{initials}" }.join
-        global_email.strip.sub("@", "#{initials_string}@")
+        default_email.strip.sub("@", "#{initials_string}@")
       else
         author_email_from_abbreviation(initials_list.first)
       end
