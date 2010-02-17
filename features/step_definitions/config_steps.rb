@@ -2,8 +2,12 @@ Given /^I have added the author "([^\"]*)"$/ do |name_and_email|
   When %(I add the author "#{name_and_email}")
 end
 
-Given /^my global Git configuration is setup for "([^\"]*)"$/ do |email|
-  `git config --global user.email #{email}`
+Given /^my global Git configuration is setup with user "([^\"]*)"$/ do |name|
+  `git config --global user.name "#{name}"`
+end
+
+Given /^my global Git configuration is setup with email "([^\"]*)"$/ do |email|
+  `git config --global user.email "#{email}"`
 end
 
 When /^I add the author "([^\"]*)"$/ do |name_and_email|
@@ -16,6 +20,10 @@ end
 
 When /^I (?:try to )?switch to the pair "([^\"]*)"$/ do |abbreviations|
   @output = git_pair abbreviations
+end
+
+When /^I reset the current authors$/ do 
+  git_pair 'reset'
 end
 
 Then /^`git pair` should display "([^\"]*)" in its author list$/ do |name|

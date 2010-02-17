@@ -35,6 +35,10 @@ module GitPair
       @config_changed
     end
 
+    def reset
+      `git config --remove-section user`
+    end
+
     def switch(abbreviations)
       raise MissingConfigurationError, "Please add some authors first" if Helpers.author_names.empty?
 
@@ -81,7 +85,7 @@ module GitPair
     end
 
     def author_names
-      author_strings.map { |line| parse_author_string(line).first }.sort_by { |name| name.split.last }
+      author_strings.map { |line| parse_author_string(line).first }.sort_by { |name| name.split.last.to_s }
     end
 
     def email(*initials_list)
@@ -116,7 +120,7 @@ module GitPair
 
     def parse_author_string(author_string)
       author_string =~ /^(.+)\s+<([^>]+)>$/
-      [$1, $2]
+      [$1.to_s, $2.to_s]
     end
 
     def abort(error_message, extra = "")
