@@ -7,6 +7,12 @@ Feature: Switching authors
     When I try to switch to the pair "AA BB"
     Then the last command's output should include "Please add some authors first"
 
+  Scenario: Pairing with a single author
+    Given I have added the author "Linus Torvalds <linus@example.org>"
+    When I switch to the pair "LT"
+    Then `git pair` should display "Linus Torvalds" for the current author
+    And `git pair` should display "linus@example.org" for the current email
+
   Scenario: Pairing with two authors
     Given I have added the author "Linus Torvalds <linus@example.org>"
     And I have added the author "Junio C Hamano <junio@example.org>"

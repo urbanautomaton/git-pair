@@ -89,8 +89,12 @@ module GitPair
     end
 
     def email(*initials_list)
-      initials_string = initials_list.map { |initials| "+#{initials}" }.join
-      current_email.sub("@", "#{initials_string}@")
+      if initials_list.size > 1
+        initials_string = initials_list.map { |initials| "+#{initials}" }.join
+        `git config --global --get user.email`.sub("@", "#{initials_string}@")
+      else
+        author_email_from_abbreviation(initials_list.first)
+      end
     end
 
     def current_author
@@ -101,21 +105,29 @@ module GitPair
       `git config --get user.email`.strip
     end
 
-    def author_name_from_abbreviation(abbrev)
+    def author_string_from_abbreviation(abbrev)
       # initials
-      author_names.each do |name|
+      author_strings.each do |name|
         return name if abbrev.downcase == name.split.map { |word| word[0].chr }.join.downcase
       end
 
       # start of a name
-      author_names.each do |name|
+      author_strings.each do |name|
         return name if name.gsub(" ", "") =~ /^#{abbrev}/i
       end
 
       # includes the letters in order
-      author_names.detect do |name|
+      author_strings.detect do |name|
         name =~ /#{abbrev.split("").join(".*")}/i
       end
+    end
+
+    def author_name_from_abbreviation(abbrev)
+      parse_author_string(author_string_from_abbreviation(abbrev)).first
+    end
+
+    def author_email_from_abbreviation(abbrev)
+      parse_author_string(author_string_from_abbreviation(abbrev)).last
     end
 
     def parse_author_string(author_string)
