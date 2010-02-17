@@ -72,7 +72,7 @@ module GitPair
       strings = author_strings.push(author_string)
 
       strings.reject! { |str|
-        !strings.one? { |s| parse_author_string(s).first == parse_author_string(str).first }
+        strings.select { |s| parse_author_string(s).first == parse_author_string(str).first }.size != 1
       }
       strings.push(author_string) if !strings.include?(author_string)
       strings.sort_by { |str| parse_author_string(str).first }
