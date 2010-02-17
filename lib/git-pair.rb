@@ -17,18 +17,19 @@ module GitPair
       authors = Helpers.author_strings_with_new(author_string)
       remove_all
       authors.each do |name_and_email|
-        `git config --add git-pair.authors "#{name_and_email}"`
+        `git config --global --add git-pair.authors "#{name_and_email}"`
       end
     end
 
     def remove(name)
       @config_changed = true
-      `git config --unset-all git-pair.authors "^#{name} <"`
+      `git config --global --unset-all git-pair.authors "^#{name} <"`
+      `git config --global --remove-section git-pair` if Helpers::author_strings.empty?
     end
 
     def remove_all
       @config_changed = true
-      `git config --unset-all git-pair.authors`
+      `git config --global --unset-all git-pair.authors`
     end
 
     def config_change_made?
@@ -71,7 +72,7 @@ module GitPair
     end
 
     def author_strings
-      `git config --get-all git-pair.authors`.split("\n")
+      `git config --global --get-all git-pair.authors`.split("\n")
     end
 
     def author_strings_with_new(author_string)
@@ -91,10 +92,14 @@ module GitPair
     def email(*initials_list)
       if initials_list.size > 1
         initials_string = initials_list.map { |initials| "+#{initials}" }.join
-        `git config --global --get user.email`.sub("@", "#{initials_string}@")
+        global_email.strip.sub("@", "#{initials_string}@")
       else
         author_email_from_abbreviation(initials_list.first)
       end
+    end
+
+    def default_email
+      `git config --global --get user.email`.strip
     end
 
     def current_author
