@@ -46,6 +46,8 @@ module GitPair
 
       sorted_names = names.uniq.sort_by { |name| name.split.last }
       `git config user.name "#{sorted_names.join(' + ')}"`
+      initials = sorted_names.map { |name| name.split.map { |word| word[0].chr }.join.downcase }
+      `git config user.email "#{Helpers.email(*initials)}"`
 
       # TODO: prompt for email if not already known
     end
@@ -84,7 +86,7 @@ module GitPair
 
     def email(*initials_list)
       initials_string = initials_list.map { |initials| "+#{initials}" }.join
-      'dev@example.com'.sub("@", "#{initials_string}@")
+      current_email.sub("@", "#{initials_string}@")
     end
 
     def current_author

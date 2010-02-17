@@ -2,6 +2,10 @@ Given /^I have added the author "([^\"]*)"$/ do |name_and_email|
   When %(I add the author "#{name_and_email}")
 end
 
+Given /^my global Git configuration is setup for "([^\"]*)"$/ do |email|
+  `git config --global user.email #{email}`
+end
+
 When /^I add the author "([^\"]*)"$/ do |name_and_email|
   git_pair %(--add "#{name_and_email}")
 end
