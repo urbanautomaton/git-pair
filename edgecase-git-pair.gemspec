@@ -4,34 +4,40 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{git-pair}
-  s.version = "0.1.0"
+  s.name = %q{edgecase-git-pair}
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Chris Kampmeier"]
-  s.date = %q{2009-12-07}
+  s.authors = ["Chris Kampmeier", "Adam McCrea", "Jon Distad"]
+  s.date = %q{2010-02-18}
   s.default_executable = %q{git-pair}
   s.description = %q{A git porcelain for pair programming. Changes git-config's user.name and user.email settings so you can commit as more than one author.}
-  s.email = %q{chris@kampers.net}
+  s.email = %q{adam@edgecase.com}
   s.executables = ["git-pair"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.markdown"
   ]
   s.files = [
-    ".gitignore",
+    ".autotest",
+     ".gitignore",
      "LICENSE",
      "README.markdown",
      "Rakefile",
      "bin/git-pair",
-     "features/git-pair.feature",
-     "features/step_definitions/git-pair_steps.rb",
+     "config/cucumber.yml",
+     "features/adding_an_author.feature",
+     "features/removing_an_author.feature",
+     "features/resetting_the_pair.feature",
+     "features/step_definitions/config_steps.rb",
      "features/support/env.rb",
-     "git-pair.gemspec",
+     "features/switching_authors.feature",
      "lib/git-pair.rb",
-     "lib/git-pair/VERSION"
+     "lib/git-pair/author.rb",
+     "lib/git-pair/command.rb",
+     "lib/git-pair/config.rb"
   ]
-  s.homepage = %q{http://github.com/chrisk/git-pair}
+  s.homepage = %q{http://github.com/edgecase/git-pair}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
