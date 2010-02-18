@@ -18,4 +18,4 @@ Feature: Adding an author
     And I add the author "Linus Torvalds <linus@example.com>"
     Then `git pair` should display "Linus Torvalds" in its author list only once
     And the gitconfig should include "Linus Torvalds" in its author list only once
-    And the gitconfig should include "linus@example.com" as the email of "Linus Torvalds"
+    And the gitconfig should include "linus@example.org" as the email of "Linus Torvalds"

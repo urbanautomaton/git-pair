@@ -4,6 +4,8 @@ module GitPair
   module Command
     extend self
 
+    C_BOLD, C_REVERSE, C_RED, C_RESET = "\e[1m", "\e[7m", "\e[91m", "\e[0m"
+
     def run!(args)
       parser = OptionParser.new do |opts|
         opts.banner = highlight('General Syntax:')
@@ -11,14 +13,14 @@ module GitPair
 
         opts.separator ' '
         opts.separator highlight('Options:')
-        opts.on '-a', '--add NAME',    'Add an author. Format: "Author Name <author@example.com>"' do |name| 
-          Commands.add name
+        opts.on '-a', '--add AUTHOR',    'Add an author. Format: "Author Name <author@example.com>"' do |author| 
+          Config.add_author Author.new(author)
         end
         opts.on '-r', '--remove NAME', 'Remove an author. Use the full name.' do |name| 
-          Commands.remove name
+          Config.remove_author name
         end
         opts.on '-d', '--reset', 'Reset current author to default (global) config' do
-          Commands.reset
+          Config.reset
         end
 
         opts.separator ' '
@@ -37,15 +39,17 @@ module GitPair
         opts.separator current_author_info.split("\n")
       end
 
-      args = parser.parse!(args).dup
+      authors = parser.parse!(args.dup)
 
-      if Commands.config_change_made?
+      if args.empty?
+        puts parser.help
+      elsif authors.empty?
         puts author_list
-      elsif args.any?
-        Commands.switch(args)
+        puts
         puts current_author_info
       else
-        puts parser.help
+        Config.switch(Author.find(authors))
+        puts current_author_info
       end
 
     rescue OptionParser::MissingArgument
@@ -59,12 +63,12 @@ module GitPair
     end
 
     def author_list
-      "     #{bold 'Author list:'} #{Helper.author_names.join "\n                  "}"
+      "     #{bold 'Author list:'} #{Author.all.sort.map { |a| a.name }.join "\n                  "}"
     end
 
     def current_author_info
-      "  #{bold 'Current author:'} #{Helper.current_author}\n" +
-      "   #{bold 'Current email:'} #{Helper.current_email}\n "
+      "  #{bold 'Current author:'} #{Config.current_author}\n" +
+      "   #{bold 'Current email:'} #{Config.current_email}\n "
     end
 
     def abort(error_message, extra = "")
