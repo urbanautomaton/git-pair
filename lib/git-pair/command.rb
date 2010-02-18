@@ -6,11 +6,11 @@ module GitPair
 
     def run!(args)
       parser = OptionParser.new do |opts|
-        opts.banner = Helper.highlight('General Syntax:')
+        opts.banner = highlight('General Syntax:')
         opts.separator '  git pair [reset | authors | options]'
 
         opts.separator ' '
-        opts.separator Helper.highlight('Options:')
+        opts.separator highlight('Options:')
         opts.on '-a', '--add NAME',    'Add an author. Format: "Author Name <author@example.com>"' do |name| 
           Commands.add name
         end
@@ -19,45 +19,70 @@ module GitPair
         end
 
         opts.separator ' '
-        opts.separator Helper.highlight('Switching authors:')
+        opts.separator highlight('Switching authors:')
         opts.separator '  git pair AA [BB]                   Where AA and BB are any abbreviation of an'
         opts.separator ' '*37 + 'author\'s name. You can specify one or more authors.'
 
         opts.separator ' '
-        opts.separator Helper.highlight('Resetting authors:')
+        opts.separator highlight('Resetting authors:')
         opts.separator '  git pair reset                     Reverts to the user specified in your Git configuration.'
 
         opts.separator ' '
-        opts.separator Helper.highlight('Current config:')
-        opts.separator Helper.display_string_for_config.split("\n")
+        opts.separator highlight('Current config:')
+        opts.separator author_list.split("\n")
         opts.separator ' '
-        opts.separator Helper.display_string_for_current_info.split("\n")
+        opts.separator current_author_info.split("\n")
       end
 
-      unused_options = parser.parse!(args).dup
+      args = parser.parse!(args).dup
 
       if Commands.config_change_made?
-        puts Helper.display_string_for_config
-      elsif unused_options.include?('reset')
+        puts author_list
+      elsif args.include?('reset')
         Commands.reset
-        puts Helper.display_string_for_current_info
-      elsif unused_options.any?
-        Commands.switch(unused_options)
-        puts Helper.display_string_for_current_info
+        puts current_author_info
+      elsif args.any?
+        Commands.switch(args)
+        puts current_author_info
       else
         puts parser.help
       end
 
     rescue OptionParser::MissingArgument
-      Helper.abort "missing required argument", parser.help
+      abort "missing required argument", parser.help
     rescue OptionParser::InvalidOption, OptionParser::InvalidArgument => e
-      Helper.abort e.message.sub(':', ''), parser.help
+      abort e.message.sub(':', ''), parser.help
     rescue NoMatchingAuthorsError => e
-      Helper.abort e.message, "\n" + Helper.display_string_for_config
+      abort e.message, "\n" + author_list
     rescue MissingConfigurationError => e
-      Helper.abort e.message, parser.help
+      abort e.message, parser.help
     end
-  end
 
+    def author_list
+      "     #{bold 'Author list:'} #{Helper.author_names.join "\n                  "}"
+    end
+
+    def current_author_info
+      "  #{bold 'Current author:'} #{Helper.current_author}\n" +
+      "   #{bold 'Current email:'} #{Helper.current_email}\n "
+    end
+
+    def abort(error_message, extra = "")
+      super red(" Error: #{error_message}\n") + extra
+    end
+
+    def highlight(string)
+      "#{C_REVERSE}#{string}#{C_RESET}"
+    end
+
+    def bold(string)
+      "#{C_BOLD}#{string}#{C_RESET}"
+    end
+
+    def red(string)
+      "#{C_RED}#{C_REVERSE}#{string}#{C_RESET}"
+    end
+
+  end
 end
 

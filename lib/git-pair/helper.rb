@@ -2,19 +2,6 @@ module GitPair
   module Helper
     extend self
 
-    def highlight(string)
-      "#{C_REVERSE}#{string}#{C_RESET}"
-    end
-
-    def display_string_for_config
-      "#{C_BOLD}     Author list: #{C_RESET}" + author_names.join("\n                  ")
-    end
-
-    def display_string_for_current_info
-      "#{C_BOLD}  Current author: #{C_RESET}" + current_author + "\n" +
-      "#{C_BOLD}   Current email: #{C_RESET}" + current_email + "\n "
-    end
-
     def author_strings
       `git config --global --get-all git-pair.authors`.split("\n")
     end
@@ -82,10 +69,6 @@ module GitPair
     def parse_author_string(author_string)
       author_string =~ /^(.+)\s+<([^>]+)>$/
       [$1.to_s, $2.to_s]
-    end
-
-    def abort(error_message, extra = "")
-      super "#{C_RED}#{C_REVERSE} Error: #{error_message} #{C_RESET}\n" + extra
     end
 
   end
