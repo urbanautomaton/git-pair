@@ -1,5 +1,6 @@
 $:.unshift File.dirname(__FILE__)
 
+require 'git-pair/helper'
 require 'git-pair/command'
 require 'git-pair/commands'
 
