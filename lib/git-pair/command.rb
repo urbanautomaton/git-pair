@@ -48,7 +48,7 @@ module GitPair
         puts
         puts current_author_info
       else
-        Config.switch(Author.find(authors))
+        Config.switch Author.find_all(authors)
         puts current_author_info
       end
 

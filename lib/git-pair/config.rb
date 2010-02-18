@@ -7,7 +7,7 @@ module GitPair
     end
 
     def add_author(author)
-      unless Author.all.find { |a| a.name == author.name }
+      unless Author.exists?(author)
         `git config --global --add git-pair.authors "#{author.name} <#{author.email}>"`
       end
     end

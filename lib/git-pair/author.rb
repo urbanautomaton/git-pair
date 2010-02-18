@@ -5,15 +5,14 @@ module GitPair
       Config.all_author_strings.map { |string| new(string) }
     end
 
-    def self.find(abbrs)
+    def self.find_all(abbrs)
       raise MissingConfigurationError, "Please add some authors first" if all.empty?
+      abbrs.map { |abbr| self.find(abbr) }
+    end
 
-      abbrs.map do |abbr|
-        author = all.find { |author| author.match?(abbr) }
-        raise NoMatchingAuthorsError, "no authors matched #{abbr}" if author.nil?
-        author
-      end
-
+    def self.find(abbr)
+      all.find { |author| author.match?(abbr) } || 
+        raise(NoMatchingAuthorsError, "no authors matched #{abbr}")
     end
 
     def self.email(authors)
@@ -23,6 +22,10 @@ module GitPair
         initials_string = '+' + authors.map { |a| a.initials }.join('+')
         Config.default_email.sub("@", "#{initials_string}@")
       end
+    end
+
+    def self.exists?(author)
+      self.all.find { |a| a.name == author.name }
     end
 
     attr_reader :name, :email
