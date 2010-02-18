@@ -23,7 +23,7 @@ When /^I (?:try to )?switch to the pair "([^\"]*)"$/ do |abbreviations|
 end
 
 When /^I reset the current authors$/ do 
-  git_pair 'reset'
+  git_pair '--reset'
 end
 
 Then /^`git pair` should display "([^\"]*)" in its author list$/ do |name|

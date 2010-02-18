@@ -17,6 +17,9 @@ module GitPair
         opts.on '-r', '--remove NAME', 'Remove an author. Use the full name.' do |name| 
           Commands.remove name
         end
+        opts.on '-d', '--reset', 'Reset current author to default (global) config' do
+          Commands.reset
+        end
 
         opts.separator ' '
         opts.separator highlight('Switching authors:')
@@ -38,9 +41,6 @@ module GitPair
 
       if Commands.config_change_made?
         puts author_list
-      elsif args.include?('reset')
-        Commands.reset
-        puts current_author_info
       elsif args.any?
         Commands.switch(args)
         puts current_author_info
