@@ -25,12 +25,8 @@ module GitPair
 
         opts.separator ' '
         opts.separator highlight('Switching authors:')
-        opts.separator '  git pair AA [BB]                   Where AA and BB are any abbreviation of an'
+        opts.separator '  git pair aa [bb]                   Where AA and BB are any abbreviation of an'
         opts.separator ' '*37 + 'author\'s name. You can specify one or more authors.'
-
-        opts.separator ' '
-        opts.separator highlight('Resetting authors:')
-        opts.separator '  git pair reset                     Reverts to the user specified in your Git configuration.'
 
         opts.separator ' '
         opts.separator highlight('Current config:')
