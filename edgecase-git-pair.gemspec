@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{edgecase-git-pair}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Kampmeier", "Adam McCrea", "Jon Distad"]
@@ -34,7 +34,6 @@ Gem::Specification.new do |s|
      "features/step_definitions/config_steps.rb",
      "features/support/env.rb",
      "features/switching_authors.feature",
-     "foo",
      "lib/git-pair.rb",
      "lib/git-pair/author.rb",
      "lib/git-pair/command.rb",
