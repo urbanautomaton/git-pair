@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{edgecase-git-pair}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Kampmeier", "Adam McCrea", "Jon Distad"]
-  s.date = %q{2010-02-18}
+  s.date = %q{2010-02-25}
   s.default_executable = %q{git-pair}
   s.description = %q{A git porcelain for pair programming. Changes git-config's user.name and user.email settings so you can commit as more than one author.}
   s.email = %q{adam@edgecase.com}
@@ -24,14 +24,17 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.markdown",
      "Rakefile",
+     "VERSION",
      "bin/git-pair",
      "config/cucumber.yml",
+     "edgecase-git-pair.gemspec",
      "features/adding_an_author.feature",
      "features/removing_an_author.feature",
      "features/resetting_the_pair.feature",
      "features/step_definitions/config_steps.rb",
      "features/support/env.rb",
      "features/switching_authors.feature",
+     "foo",
      "lib/git-pair.rb",
      "lib/git-pair/author.rb",
      "lib/git-pair/command.rb",
