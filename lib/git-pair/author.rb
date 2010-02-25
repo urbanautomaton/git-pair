@@ -1,6 +1,8 @@
 module GitPair
   class Author
 
+    ValidAuthorStringRegex = /^\s*([^<]+)<([^>]+)>\s*$/
+
     class InvalidAuthorString < TypeError; end
     
     def self.all
@@ -31,7 +33,7 @@ module GitPair
     end
 
     def self.valid_string?(author_string)
-      author_string =~ /^\s*[^<]+\s*<[^>]+>\s*$/
+      author_string =~ ValidAuthorStringRegex
     end
 
     attr_reader :name, :email
@@ -41,9 +43,9 @@ module GitPair
         raise(InvalidAuthorString, "\"#{string}\" is not a valid name and email")
       end
 
-      string =~ /^(.+)\s+<([^>]+)>$/
-      @name = $1.to_s 
-      @email = $2.to_s
+      string =~ ValidAuthorStringRegex
+      @name = $1.to_s.strip
+      @email = $2.to_s.strip
     end
 
     def <=>(other)
