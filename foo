@@ -1,0 +1,65 @@
+# Logfile created on Thu Feb 25 16:50:49 -0500 2010 by /
+I, [2010-02-25T16:50:49.598792 #46617]  INFO -- : nil
+I, [2010-02-25T16:50:50.167870 #46634]  INFO -- : nil
+I, [2010-02-25T16:50:50.483740 #46645]  INFO -- : nil
+I, [2010-02-25T16:50:51.055276 #46663]  INFO -- : nil
+I, [2010-02-25T16:50:51.331615 #46673]  INFO -- : nil
+I, [2010-02-25T16:50:51.908748 #46693]  INFO -- : nil
+I, [2010-02-25T16:50:52.201900 #46704]  INFO -- : nil
+I, [2010-02-25T16:50:52.493925 #46713]  INFO -- : nil
+I, [2010-02-25T16:50:52.838910 #46726]  INFO -- : nil
+I, [2010-02-25T16:50:53.127413 #46736]  INFO -- : nil
+I, [2010-02-25T16:50:53.962228 #46763]  INFO -- : nil
+I, [2010-02-25T16:50:54.240749 #46773]  INFO -- : nil
+I, [2010-02-25T16:50:55.344564 #46811]  INFO -- : nil
+I, [2010-02-25T16:50:56.771899 #46859]  INFO -- : nil
+I, [2010-02-25T16:50:57.833084 #46892]  INFO -- : nil
+I, [2010-02-25T16:50:58.116170 #46902]  INFO -- : nil
+I, [2010-02-25T16:51:16.032615 #46975]  INFO -- : nil
+I, [2010-02-25T16:51:16.595670 #46992]  INFO -- : nil
+I, [2010-02-25T16:51:16.905772 #47003]  INFO -- : nil
+I, [2010-02-25T16:51:17.476570 #47021]  INFO -- : nil
+I, [2010-02-25T16:51:17.767028 #47031]  INFO -- : nil
+I, [2010-02-25T16:51:18.347631 #47051]  INFO -- : nil
+I, [2010-02-25T16:51:18.626542 #47061]  INFO -- : nil
+I, [2010-02-25T16:51:18.900286 #47070]  INFO -- : nil
+I, [2010-02-25T16:51:19.235287 #47083]  INFO -- : nil
+I, [2010-02-25T16:51:19.511262 #47093]  INFO -- : nil
+I, [2010-02-25T16:51:20.343885 #47120]  INFO -- : nil
+I, [2010-02-25T16:51:20.673957 #47130]  INFO -- : nil
+I, [2010-02-25T16:51:21.794346 #47168]  INFO -- : nil
+I, [2010-02-25T16:51:23.214325 #47216]  INFO -- : nil
+I, [2010-02-25T16:51:24.291254 #47249]  INFO -- : nil
+I, [2010-02-25T16:51:24.571564 #47259]  INFO -- : nil
+I, [2010-02-25T16:53:23.796179 #47349]  INFO -- : #<GitPair::Author:0x300804 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:23.814352 #47349]  INFO -- : nil
+I, [2010-02-25T16:53:24.367462 #47366]  INFO -- : #<GitPair::Author:0x300804 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:24.367663 #47366]  INFO -- : nil
+I, [2010-02-25T16:53:24.642472 #47376]  INFO -- : #<GitPair::Author:0x619e50 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:24.642623 #47376]  INFO -- : nil
+I, [2010-02-25T16:53:25.203469 #47394]  INFO -- : #<GitPair::Author:0x300804 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:25.203601 #47394]  INFO -- : nil
+I, [2010-02-25T16:53:25.475837 #47404]  INFO -- : #<GitPair::Author:0x619e50 @email="linus@example.com", @name="Linus Torvalds">
+I, [2010-02-25T16:53:25.475983 #47404]  INFO -- : nil
+I, [2010-02-25T16:53:26.046659 #47424]  INFO -- : #<GitPair::Author:0x7d7f8 @email="", @name="">
+I, [2010-02-25T16:53:26.046792 #47424]  INFO -- : nil
+I, [2010-02-25T16:53:26.325583 #47434]  INFO -- : #<GitPair::Author:0x7f404 @email="", @name="">
+I, [2010-02-25T16:53:26.325716 #47434]  INFO -- : nil
+I, [2010-02-25T16:53:26.592889 #47443]  INFO -- : #<GitPair::Author:0x619e8c @email="", @name="">
+I, [2010-02-25T16:53:26.593022 #47443]  INFO -- : nil
+I, [2010-02-25T16:53:26.914915 #47456]  INFO -- : #<GitPair::Author:0x300804 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:26.915065 #47456]  INFO -- : nil
+I, [2010-02-25T16:53:27.195149 #47466]  INFO -- : #<GitPair::Author:0x619e50 @email="junio@example.org", @name="Junio C Hamano">
+I, [2010-02-25T16:53:27.195291 #47466]  INFO -- : nil
+I, [2010-02-25T16:53:28.073257 #47493]  INFO -- : #<GitPair::Author:0x300804 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:28.073412 #47493]  INFO -- : nil
+I, [2010-02-25T16:53:28.394054 #47504]  INFO -- : #<GitPair::Author:0x619e50 @email="junio@example.org", @name="Junio C Hamano">
+I, [2010-02-25T16:53:28.394197 #47504]  INFO -- : nil
+I, [2010-02-25T16:53:29.492154 #47542]  INFO -- : #<GitPair::Author:0x300804 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:29.492287 #47542]  INFO -- : nil
+I, [2010-02-25T16:53:30.880479 #47590]  INFO -- : #<GitPair::Author:0x300804 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:30.881116 #47590]  INFO -- : nil
+I, [2010-02-25T16:53:32.004486 #47623]  INFO -- : #<GitPair::Author:0x300804 @email="linus@example.org", @name="Linus Torvalds">
+I, [2010-02-25T16:53:32.006099 #47623]  INFO -- : nil
+I, [2010-02-25T16:53:32.286488 #47633]  INFO -- : #<GitPair::Author:0x619e50 @email="junio@example.org", @name="Junio C Hamano">
+I, [2010-02-25T16:53:32.286632 #47633]  INFO -- : nil

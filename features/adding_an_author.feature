@@ -19,3 +19,9 @@ Feature: Adding an author
     Then `git pair` should display "Linus Torvalds" in its author list only once
     And the gitconfig should include "Linus Torvalds" in its author list only once
     And the gitconfig should include "linus@example.org" as the email of "Linus Torvalds"
+
+  Scenario: adding a malformed author string
+    When I add the author " "
+    And  I add the author "Bob Dole"
+    And  I add the author "Jimmy <asdf"
+    Then the config file should have no authors

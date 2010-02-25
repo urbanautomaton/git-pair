@@ -56,6 +56,8 @@ module GitPair
       abort e.message, "\n" + author_list
     rescue MissingConfigurationError => e
       abort e.message, parser.help
+    rescue Author::InvalidAuthorString => e
+      abort e.message, parser.help
     end
 
     def author_list

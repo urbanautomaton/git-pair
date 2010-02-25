@@ -13,13 +13,13 @@ module RepositoryHelper
   CONFIG_BACKUP_PATH = "#{PROJECT_PATH}/tmp"
 
   def git_pair(options = "")
-    output = `HOME=#{TEST_REPO_PATH} GIT_DIR=#{TEST_REPO_DOT_GIT_PATH} && #{GIT_PAIR} #{options} 2>&1`
+    output = `HOME=#{TEST_REPO_PATH} GIT_DIR=#{TEST_REPO_DOT_GIT_PATH} #{GIT_PAIR} #{options} 2>&1`
     output.gsub(/\e\[\d\d?m/, '')  # strip any ANSI colors
   end
 
   def git_config(options = nil)
     options ||= "--list"
-    `HOME=#{TEST_REPO_PATH} GIT_DIR=#{TEST_REPO_DOT_GIT_PATH} && git config #{options} 2>&1`
+    `HOME=#{TEST_REPO_PATH} GIT_DIR=#{TEST_REPO_DOT_GIT_PATH} git config #{options} 2>&1`
   end
 
   def backup_gitconfigs

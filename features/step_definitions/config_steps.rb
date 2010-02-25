@@ -38,6 +38,13 @@ Then /^`git pair` should display "([^\"]*)" in its author list only once$/ do |n
   assert_equal 1, authors.select { |author| author == name}.size
 end
 
+Then /^`git pair` should display no authors$/ do
+  output = git_pair
+  authors = authors_list_from_output(output)
+  authors.size.should be_zero
+end
+
+
 Then /^`git pair` should display "([^\"]*)" for the current author$/ do |names|
   output = git_pair
   assert_equal names, current_author_from_output(output)
@@ -74,6 +81,11 @@ end
 Then /^the last command's output should include "([^\"]*)"$/ do |output|
   assert @output.include?(output)
 end
+
+Then /^the config file should have no authors$/ do
+  git_config(%(--global --get-all git-pair.authors)).should == ''
+end
+
 
 def authors_list_from_output(output)
   output =~ /Author list: (.*?)\n\s?\n/im

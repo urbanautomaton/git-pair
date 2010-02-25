@@ -1,5 +1,7 @@
 module GitPair
   class Author
+
+    class InvalidAuthorString < TypeError; end
     
     def self.all
       Config.all_author_strings.map { |string| new(string) }
@@ -28,9 +30,17 @@ module GitPair
       self.all.find { |a| a.name == author.name }
     end
 
+    def self.valid_string?(author_string)
+      author_string =~ /^\s*[^<]+\s*<[^>]+>\s*$/
+    end
+
     attr_reader :name, :email
 
     def initialize(string)
+      unless Author.valid_string?(string)
+        raise(InvalidAuthorString, "\"#{string}\" is not a valid name and email")
+      end
+
       string =~ /^(.+)\s+<([^>]+)>$/
       @name = $1.to_s 
       @email = $2.to_s
