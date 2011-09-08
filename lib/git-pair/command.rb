@@ -13,14 +13,24 @@ module GitPair
 
         opts.separator ' '
         opts.separator highlight('Options:')
-        opts.on '-a', '--add AUTHOR',    'Add an author. Format: "Author Name <author@example.com>"' do |author| 
+        opts.on '-a', '--add AUTHOR',    'Add an author. Format: "Author Name <author@example.com>"' do |author|
           Config.add_author Author.new(author)
         end
-        opts.on '-r', '--remove NAME', 'Remove an author. Use the full name.' do |name| 
+        opts.on '-r', '--remove NAME', 'Remove an author. Use the full name.' do |name|
           Config.remove_author name
         end
         opts.on '-d', '--reset', 'Reset current author to default (global) config' do
           Config.reset
+        end
+        opts.on '--pattern PATTERN', "Set email pattern. Example: \"dev+%name+%name@%domain\"\n" +
+                "                                       %name   - First name\n" +
+                "                                       %last   - Last name\n" +
+                "                                       %abbr   - Abbreviation\n" +
+                "                                       %domain - Use domain from global config\n" do |pattern|
+          Config.set_pattern(pattern)
+        end
+        opts.on'--remove-pattern', 'Reset the current email pattern to default.' do
+          Config.remove_pattern
         end
 
         opts.separator ' '
@@ -31,6 +41,7 @@ module GitPair
         opts.separator ' '
         opts.separator highlight('Current config:')
         opts.separator author_list.split("\n")
+        opts.separator pattern_info
         opts.separator ' '
         opts.separator current_author_info.split("\n")
       end
@@ -41,6 +52,7 @@ module GitPair
         puts parser.help
       elsif authors.empty?
         puts author_list
+        puts pattern_info
         puts
         puts current_author_info
       else
@@ -61,12 +73,16 @@ module GitPair
     end
 
     def author_list
-      "     #{bold 'Author list:'} #{Author.all.sort.map { |a| a.name }.join "\n                  "}"
+      "     #{bold 'Author list:'} #{Author.all.sort.map { |a| a.name }.join("\n                  ")}\n\ "
+    end
+
+    def pattern_info
+      " #{bold '  Email pattern:'} #{Config.pattern}\n"
     end
 
     def current_author_info
       "  #{bold 'Current author:'} #{Config.current_author}\n" +
-      "   #{bold 'Current email:'} #{Config.current_email}\n "
+      "   #{bold 'Current email:'} #{Config.current_email}"
     end
 
     def abort(error_message, extra = "")
@@ -84,7 +100,5 @@ module GitPair
     def red(string)
       "#{C_RED}#{C_REVERSE}#{string}#{C_RESET}"
     end
-
   end
 end
-

@@ -2,7 +2,6 @@ require 'tmpdir'
 require 'test/unit/assertions'
 World(Test::Unit::Assertions)
 
-
 module RepositoryHelper
   # TODO: use 1.8.7's Dir.mktmpdir?
   TEST_REPO_PATH         = File.join(Dir::tmpdir, "git-pair-test-repo")
@@ -37,11 +36,10 @@ end
 
 World(RepositoryHelper)
 
-
 Before do
   backup_gitconfigs
   FileUtils.mkdir_p RepositoryHelper::TEST_REPO_PATH
-  `GIT_DIR=#{RepositoryHelper::TEST_REPO_DOT_GIT_PATH} && git init`
+  `cd #{RepositoryHelper::TEST_REPO_PATH} && git init`
 end
 
 After do

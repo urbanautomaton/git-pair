@@ -86,6 +86,9 @@ Then /^the config file should have no authors$/ do
   git_config(%(--global --get-all git-pair.authors)).should == ''
 end
 
+Then /^I add the email configuration pattern "([^"]*)"$/ do |pattern_string|
+  git_pair %(--pattern "#{pattern_string}")
+end
 
 def authors_list_from_output(output)
   output =~ /Author list: (.*?)\n\s?\n/im

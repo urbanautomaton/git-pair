@@ -1,3 +1,7 @@
+Feature: Resetting the current authors
+  In order to revert to original settings
+  A user should be able to
+  reset the current pair
 
   Scenario: resetting the current authors
     Given I have added the author "Linus Torvalds <linus@example.org>"
