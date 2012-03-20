@@ -9,14 +9,14 @@ module GitPair
       Config.all_author_strings.map { |string| new(string) }
     end
 
-    def self.find_all(abbrs)
+    def self.find_all(abbrs_or_names)
       raise MissingConfigurationError, "Please add some authors first" if all.empty?
-      abbrs.map { |abbr| self.find(abbr) }
+      abbrs_or_names.map { |abbr_or_name| self.find(abbr_or_name) }
     end
 
-    def self.find(abbr)
-      all.find { |author| author.match?(abbr) } ||
-        raise(NoMatchingAuthorsError, "no authors matched #{abbr}")
+    def self.find(abbr_or_name)
+      all.find { |author| author.match?(abbr_or_name) } ||
+        raise(NoMatchingAuthorsError, "no authors matched #{abbr_or_name}")
     end
 
     def self.email(authors)
@@ -64,8 +64,8 @@ module GitPair
       name.split.last.downcase
     end
 
-    def match?(abbr)
-      abbr.downcase == initials
+    def match?(abbr_or_name)
+      abbr_or_name.downcase == first_name || abbr_or_name.downcase == last_name || abbr_or_name.downcase == initials
     end
   end
 end
