@@ -35,8 +35,8 @@ module GitPair
 
         opts.separator ' '
         opts.separator highlight('Switching authors:')
-        opts.separator '  git pair aa [bb]                   Where AA and BB are any abbreviation or name of an'
-        opts.separator ' '*37 + 'author\'s name. You can specify one or more authors.'
+        opts.separator '  git pair aa [bb]                   Where AA and BB are any initials or first/last name'
+        opts.separator ' '*37 + 'of an author. You can specify one or more authors.'
 
         opts.separator ' '
         opts.separator highlight('Current config:')

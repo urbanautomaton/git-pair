@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "mynewsdesk-git-pair"
   s.version     = Git::Pair::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Chris Kampmeier", "Adam McCrea", "Jon Distad", "ingemar"]
+  s.authors     = ["Chris Kampmeier", "Adam McCrea", "Jon Distad", "ingemar", "Jonas Forsberg"]
   s.email       = "dev@mynewsdesk.com"
   s.homepage    = "http://github.com/mynewsdesk/git-pair"
   s.summary     = "Configure git to commit as more than one author"

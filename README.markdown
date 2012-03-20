@@ -7,7 +7,7 @@ more than one author.
 
 Install the gem:
 
-    gem install edgecase-git-pair
+    gem install mynewsdesk-git-pair
 
 And here's how to use it!
 
@@ -29,15 +29,15 @@ And here's how to use it!
 
 
     Switching authors:
-      git pair aa [bb]                   Where AA and BB are any abbreviation of an
-                                         author's name. You can specify one or more authors.
+      git pair aa [bb]                   Where AA and BB are any initials or first/last name
+                                         of an author. You can specify one or more authors.
 
     Current config:
          Author list: Adam McCrea
                       Jon Distad
 
       Current author: Jon Distad + Adam McCrea
-       Current email: devs+jd+am@edgecase.com
+       Current email: devs+jd+am@mynewsdesk.com
 
 ## How does it work?
 
@@ -48,7 +48,7 @@ from the global configuration along with the developer abbreviations.
 
 ## About this version
 
-This was forked from http://github.com/edgecase/git-pair, which its turn
+This was forked from http://github.com/mynewsdesk/git-pair, which its turn
 was forked from http://github.com/chrisk/git-pair. Many thanks to
 Chris Kampmeier for the original version.  Jon Distad and Ehren Murdick's
 version added the --reset option and did a great job refactoring the code.
