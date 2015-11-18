@@ -5,7 +5,7 @@ module GitPair
     DEFAULT_PATTERN = "devs+%abbr+%abbr@%domain"
 
     def all_author_strings
-      `git config --global --get-all git-pair.authors`.split("\n")
+      `git config --get-all git-pair.authors`.split("\n")
     end
 
     def pattern

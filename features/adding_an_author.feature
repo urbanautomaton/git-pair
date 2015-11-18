@@ -25,3 +25,9 @@ Feature: Adding an author
     And  I add the author "Bob Dole"
     And  I add the author "Jimmy <asdf"
     Then the config file should have no authors
+
+  Scenario: manually adding an author to the local git configuration
+    Given my local Git configuration contains the author "Linus Torvalds <linus@example.org>"
+    Then `git pair` should display "Linus Torvalds" in its author list
+    And the gitconfig should include "Linus Torvalds" in its author list only once
+    And the gitconfig should include "linus@example.org" as the email of "Linus Torvalds"
